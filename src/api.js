@@ -20,7 +20,9 @@ const getToken = () => {
 
 const searchSongs = async (token, song) => {
   const response = await axios.get(
-    `https://api.spotify.com/v1/search?q=${song}&type=track&limit=5`,
+    `https://api.spotify.com/v1/search?q=${encodeURIComponent(
+      song
+    )}&type=track&limit=5`,
     {
       headers: {
         Authorization: `Bearer ${token}`

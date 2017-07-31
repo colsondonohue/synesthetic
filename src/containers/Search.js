@@ -25,7 +25,9 @@ class Search extends Component {
   };
 
   handleClick = e => {
-    this.props.history.push(`/search/${e.target.title}/${e.target.id}`);
+    this.props.history.push(
+      `/search/${encodeURIComponent(e.target.title)}/${e.target.id}`
+    );
   };
 
   render() {

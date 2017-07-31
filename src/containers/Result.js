@@ -18,7 +18,7 @@ class Result extends Component {
     return (
       <div>
         <h1>
-          {this.props.match.params.song}
+          {decodeURIComponent(this.props.match.params.song)}
         </h1>
         <Palette colors={generateColors(this.state.songInfo)} />
       </div>
