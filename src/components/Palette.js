@@ -22,4 +22,6 @@ const Palette = ({ colors }) =>
     {colors.map(color => <ColorCard color={color} key={color} />)}
   </ColorContainer>;
 
+Palette.propTypes = propTypes;
+
 export default Palette;
