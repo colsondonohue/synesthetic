@@ -10,7 +10,7 @@ class Wrapper extends Component {
   render() {
     return (
       <Layout>
-        <Title>synesthetic</Title>
+        <Title url={window.location.pathname}>synesthetic</Title>
         {this.props.children}
       </Layout>
     );
