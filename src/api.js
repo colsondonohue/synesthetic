@@ -11,7 +11,11 @@ const authorize = id => {
 
 const getToken = () => {
   const { access_token } = queryString.parse(window.location.hash);
-  return access_token;
+  if (access_token) {
+    localStorage.setItem('token', access_token);
+    return access_token;
+  }
+  return localStorage.getItem('token') || '';
 };
 
 const searchSongs = async (token, song) => {

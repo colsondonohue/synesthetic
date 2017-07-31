@@ -20,7 +20,6 @@ class Search extends Component {
   };
 
   handleClick = e => {
-    console.log(e.target);
     this.props.history.push(`/search/${e.target.id}`);
   };
 
