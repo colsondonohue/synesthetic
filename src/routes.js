@@ -1,14 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Wrapper from './containers/Wrapper';
-import App from './containers/App';
+import Search from './containers/Search';
 import Login from './containers/Login';
+import Result from './containers/Result';
 
 const routes = (
   <Router>
     <Wrapper>
       <Route exact path="/" component={Login} />
-      <Route path="/home" component={App} />
+      <Route exact path="/search" component={Search} />
+      <Route path="/search/:id" component={Result} />
     </Wrapper>
   </Router>
 );
