@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import debounce from 'lodash/debounce';
 import Centered from '../components/Centered';
 import SearchBar from '../components/SearchBar';
 import { getToken, searchSongs } from '../api';
@@ -14,9 +15,13 @@ class Search extends Component {
     this.setState({ token });
   }
 
-  handleChange = async e => {
-    const songs = await searchSongs(this.state.token, e.target.value);
+  getSongs = debounce(async value => {
+    const songs = await searchSongs(this.state.token, value);
     this.setState({ songs });
+  }, 200);
+
+  handleChange = e => {
+    this.getSongs(e.target.value);
   };
 
   handleClick = e => {
