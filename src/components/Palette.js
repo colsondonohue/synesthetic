@@ -19,7 +19,7 @@ const ColorContainer = styled.section`
 
 const Palette = ({ colors }) =>
   <ColorContainer>
-    {colors.map(color => <ColorCard color={color} key={color} />)}
+    {colors.map((color, i) => <ColorCard color={color} key={i} />)}
   </ColorContainer>;
 
 Palette.propTypes = propTypes;

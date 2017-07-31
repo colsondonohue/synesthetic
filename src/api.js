@@ -43,5 +43,17 @@ const searchSongs = async (token, song) => {
   return response.data.tracks ? formatSongs(response.data.tracks.items) : [];
 };
 
+const getSongInfo = async (token, id) => {
+  const response = await axios.get(
+    `https://api.spotify.com/v1/audio-features/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+  return response.data;
+};
+
 export default authorize;
-export { getToken, searchSongs };
+export { getToken, searchSongs, getSongInfo };

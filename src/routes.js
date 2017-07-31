@@ -10,7 +10,7 @@ const routes = (
     <Wrapper>
       <Route exact path="/" component={Login} />
       <Route exact path="/search" component={Search} />
-      <Route path="/search/:id" component={Result} />
+      <Route path="/search/:song/:id" component={Result} />
     </Wrapper>
   </Router>
 );
