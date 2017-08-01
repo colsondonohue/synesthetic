@@ -1,27 +1,14 @@
 import chroma from 'chroma-js';
 
-const getMain = ({
-  acousticness,
-  energy,
-  valence,
-  danceability,
-  loudness,
-  mode
-}) => {
-  const h = 720 * Math.asin((acousticness + 0.3) % 1) / Math.PI;
-  const c = 30 * (energy + danceability);
+const getBase = ({ energy, valence, danceability, loudness, mode, tempo }) => {
+  // constrain to arcsin's domain (-1, 1)
+  const hueVar = Math.min(Math.max(2 * valence + tempo / 200 - 1, -1), 1);
+  // math.pow(...) / 18 makes values smaller than 320 smaller and bigger than 320 bigger
+  const h = Math.pow(160 * Math.asin(hueVar) / Math.PI + 320, 1.5) / 18 % 360;
+  const c = 35 * energy + 25 * danceability;
   // cbrt normalizes brightness so that colors don't get too muddy at low valences
-  const l = 30 * Math.cbrt(10 + loudness + 20 * valence);
+  const l = 30 * Math.cbrt(10 + loudness + 12 * valence + 8 * danceability);
 
-  console.log({
-    acousticness,
-    energy,
-    valence,
-    danceability,
-    loudness,
-    mode
-  });
-  console.log(`hcl: ${h} ${c} ${l}`);
   // cool down songs in minor mode
   return mode === 0
     ? chroma.hcl((h + 225) / 2, c, l).hex()
