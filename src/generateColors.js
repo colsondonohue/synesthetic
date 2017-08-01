@@ -15,16 +15,19 @@ const getBase = ({ energy, valence, danceability, loudness, mode, tempo }) => {
     : chroma.hcl(h, c, l).hex();
 };
 
-const getSecondary = color => {
+const getScaleColors = color => {
   const [h, c, l] = chroma(color).hcl();
   const newL = l > 60 ? l - 10 : l + 10;
-  return chroma.hcl((h + 120) % 360, c, newL).hex();
+  return [
+    chroma.hcl((h - 60) % 360, c, l).hex(),
+    chroma.hcl((h + 60) % 360, c, newL).hex()
+  ];
 };
 
 const generateColors = songInfo => {
-  const main = getMain(songInfo);
-  const secondary = getSecondary(main);
-  return chroma.scale([main, secondary]).mode('hcl').colors(5);
+  const base = getBase(songInfo);
+  const scaleColors = getScaleColors(base);
+  return chroma.scale(scaleColors).mode('hcl').colors(5);
 };
 
 export default generateColors;
