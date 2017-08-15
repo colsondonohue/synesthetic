@@ -4,7 +4,7 @@ import axios from 'axios';
 const authorize = id => {
   const baseUri =
     process.env.NODE_ENV === 'production'
-      ? 'https://synesthetic.com'
+      ? 'https://synesthetic.colsondonohue.com'
       : 'http://localhost:3000';
   window.location = `https://accounts.spotify.com/authorize?client_id=${id}&redirect_uri=${baseUri}/search&response_type=token`;
 };
