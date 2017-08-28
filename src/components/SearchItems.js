@@ -46,8 +46,13 @@ const ItemContainer = styled.div`
 
 const SearchItem = ({ song, onClick }) =>
   <ItemContainer onClick={onClick} id={song.id} title={song.name}>
-    <Thumbnail src={song.thumbnail} alt={`${song.name} album art`} />
-    <InfoContainer>
+    <Thumbnail
+      src={song.thumbnail}
+      id={song.id}
+      title={song.name}
+      alt={`${song.name} album art`}
+    />
+    <InfoContainer id={song.id} title={song.name}>
       <SongText>
         {song.name}
       </SongText>
