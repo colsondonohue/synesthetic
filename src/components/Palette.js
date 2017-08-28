@@ -4,7 +4,9 @@ import PropTypes from 'proptypes';
 import ColorCard from './ColorCard';
 
 const propTypes = {
-  colors: PropTypes.arrayOf(PropTypes.string).isRequired
+  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onClick: PropTypes.func.isRequired,
+  copied: PropTypes.string.isRequired
 };
 
 const ColorContainer = styled.section`
@@ -17,9 +19,11 @@ const ColorContainer = styled.section`
   }
 `;
 
-const Palette = ({ colors }) =>
+const Palette = ({ colors, onClick, copied }) =>
   <ColorContainer>
-    {colors.map((color, i) => <ColorCard color={color} key={i} />)}
+    {colors.map((color, i) =>
+      <ColorCard color={color} onClick={onClick} copied={copied} key={i} />
+    )}
   </ColorContainer>;
 
 Palette.propTypes = propTypes;
