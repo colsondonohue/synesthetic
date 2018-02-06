@@ -16,9 +16,10 @@ class Result extends Component {
   }
 
   handleClick = e => {
+    const { color } = e.target.dataset;
     const textArea = document.createElement('textarea');
-    textArea.innerText = e.target.title;
-    this.setState({ copied: e.target.title });
+    textArea.innerText = color;
+    this.setState({ copied: color });
     document.body.appendChild(textArea);
     textArea.select();
     document.execCommand('copy');

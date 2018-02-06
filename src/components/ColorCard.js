@@ -11,7 +11,7 @@ const propTypes = {
 const Color = styled.div`
   width: 100%;
   height: 200px;
-  background-color: ${props => props.color};
+  background-color: ${props => props['data-color']};
 
   @media (max-width: 600px) {
     height: 80px;
@@ -57,11 +57,11 @@ const CopyText = styled.div`
 
 const ColorCard = ({ color, onClick, copied }) =>
   <ColorWrapper onClick={onClick}>
-    <Color color={color} title={color} />
-    <Title title={color}>
+    <Color data-color={color} />
+    <Title data-color={color}>
       {color}
     </Title>
-    <CopyText title={color}>
+    <CopyText data-color={color}>
       {copied === color ? 'Copied!' : 'Click to Copy'}
     </CopyText>
   </ColorWrapper>;
